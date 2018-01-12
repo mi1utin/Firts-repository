@@ -33,15 +33,38 @@
 		<p>Благодарим за внимание!</p>
 	</div>
 	<div id="authorisation">
+		<b>Авторизация</b>
 		<form method="POST" action="">
 			<input type="text" name="login" maxlength="25" placeholder="Введите Логин">
 			<input type="password" name="password" maxlength="25" placeholder="Введите Пароль">
-			<button type="submit" id="a"><b>Войти</b></button>
+			<button type="submit"><b>Войти</b></button>
 		</form>
+		<button id="change"><b>Регистрация</b></button>
 	</div>
 	<footer>
 		SiteNEW | Все права защищены 2017
 	</footer>
 </div>
+<script type="text/javascript">
+	var change = document.getElementById("change");
+	function func(){
+		var input = document.createElement("input");
+		var div = document.getElementById("authorisation");
+		div.style.height = "44.5%";
+		input.type = "text";
+		input.name = "mail";
+		input.setAttribute("maxlength","25");
+		input.placeholder = "Введите E-mail";
+		div.children[1].insertBefore(input,div.children[1].children[2]);
+		change.innerHTML = "<b>Авторизация</b>";
+		change.onclick = function a(){
+			div.style.height = "38%";
+			input.remove();
+			change.innerHTML = "<b>Регистрация</b>";
+			change.onclick = func;
+		}
+	}
+	change.onclick = func;
+</script>
 </body>
 </html>
