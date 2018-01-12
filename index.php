@@ -34,7 +34,7 @@
 	</div>
 	<div id="authorisation">
 		<b>Авторизация</b>
-		<form method="POST" action="">
+		<form method="POST" action="check.php">
 			<input type="text" name="login" maxlength="25" placeholder="Введите Логин">
 			<input type="password" name="password" maxlength="25" placeholder="Введите Пароль">
 			<button type="submit"><b>Войти</b></button>
@@ -47,9 +47,23 @@
 </div>
 <script type="text/javascript">
 	var change = document.getElementById("change");
+	var div = document.getElementById("authorisation");
+	var form = div.children[1];
+	form.onsubmit = function(){
+		if (form.children[2] == "[object HTMLInputElement]"){
+			if (form.children[2].value == "" || form.children[2].value.length <= 4){
+				alert("Поле пустое");
+				return false;
+        }
+		}
+		if (form.children[0].value == "" || form.children[1].value == "" || form.children[0].value.length <= 4 || form.children[0].value.length <= 4){
+			alert("Поле пустое!");
+			return false;
+		}
+	}
 	function func(){
 		var input = document.createElement("input");
-		var div = document.getElementById("authorisation");
+		div.children[0].innerHTML = "Регистрация";
 		div.style.height = "44.5%";
 		input.type = "text";
 		input.name = "mail";
@@ -57,7 +71,8 @@
 		input.placeholder = "Введите E-mail";
 		div.children[1].insertBefore(input,div.children[1].children[2]);
 		change.innerHTML = "<b>Авторизация</b>";
-		change.onclick = function a(){
+		change.onclick = function(){
+			div.children[0].innerHTML = "Авторизация";
 			div.style.height = "38%";
 			input.remove();
 			change.innerHTML = "<b>Регистрация</b>";
